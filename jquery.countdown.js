@@ -13,14 +13,17 @@
 				renderHours: $.noop,
 				renderMinutes: $.noop,
 				renderSeconds: $.noop,
+				remainTime: 0
 			}, opts || {}),
-			deadline = new Date($el.data('deadline')); //default format 2013-01-01
 
 		var _countdown = function() {
-			setInterval(_second, 1000);
+			_second();
+			options.remainTime--;
+			setTimeout(_countdown, 1000);
 		};
+
 		var _second = function() {
-			var seconds = Math.floor((deadline.getTime() - new Date().getTime()) / 1000);
+			var seconds = Math.floor(options.remainTime);
 			var second = seconds % 60;
 			//todo second action
 			options.renderSeconds(second);
