@@ -1,3 +1,16 @@
+/**
+ * 回到顶部的jquery扩展。
+ * 最简单的使用方法
+ * $backtop.backtop({
+		mainBody: $('.content')
+	});
+	$backtop是回到顶部的dom对象
+	$('.content')是容纳页面内容的dom元素
+ *
+ * @author yongxin.pan
+ * @version 1.0.0
+ * @create time 2013-07-10
+ */
 (function($) {
 	$.fn.backtop = function(opts) {
 		this.each(function() {
@@ -12,13 +25,13 @@
 			$win = $(window);
 
 		var options = $.extend({}, {
-			mainBody: null,
-			offset: null,
-			scrollTop: 400
+			mainBody: null, //参照的页面的宽度，用来自适应窗口的大小
+			offset: null, //设置回到顶部的位置，不传也行
+			scrollTop: 400 //默认当鼠标滚动400像素点时候就出现回到顶部的标签
 		}, opts || {}),
-			isIE6 = $.browser.msie && $.browser.version < 7,
-			defaultBacktopTop = $win.height() + 700,
-			hasShow = false,
+			isIE6 = $.browser.msie && $.browser.version < 7, //判断是否是ie6
+			defaultBacktopTop = $win.height() + 700, //默认距离顶部的距离
+			hasShow = false, //默认还没显示
 			timer = null;
 
 		var _showBacktop = function(top) {
@@ -104,7 +117,7 @@
 					hasShow = false;
 				}
 			} else {
-				
+
 				var offsetTop = options.offset && options.offset.top ? options.offset.top : $win.height() - ($el.height() + 100);
 
 				if (nowScrollTop >= options.scrollTop && !hasShow) {
