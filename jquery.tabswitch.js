@@ -61,6 +61,6 @@
 			return false;
 		};
 
-		tabs.bind('click', _handleClick);
+		$el.on('click', options.tabSelector, _handleClick);
 	};
 })(jQuery);

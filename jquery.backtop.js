@@ -49,12 +49,12 @@
 			var leastWidth = options.offset && options.offset.left ? (options.offset.left + backtopW) : (mainBodyW + options.mainBody.offset().left + backtopW * 1.618);
 
 			if (leastWidth > winW) {
-				if (mainBodyW > winW) {
+				// if (mainBodyW > winW) {
 					$el[0].style.left = null;
 					$el.css('right', 10);
-				} else {
-					$el.css('left', options.mainBody.offset().left + mainBodyW - backtopW);
-				}
+				// } else {
+				// 	$el.css('left', options.mainBody.offset().left + mainBodyW - backtopW);
+				// }
 			} else {
 				$el.css('left', options.offset && options.offset.left ? options.offset.left : (mainBodyW + options.mainBody.offset().left + backtopW * 0.618));
 			}
