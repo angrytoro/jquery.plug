@@ -1,0 +1,33 @@
+<html>
+	<body>
+		<div>
+			<div>
+				<h1>demon1</h1>
+				<label>开启<input type="radio" name="demon1" value="1" checked="checked"></label>
+				<label>关闭<input type="radio" name="demon1" value="2"></label>
+			</div>
+			<div>
+				<h1>demon2</h1>
+				<label>value=1<input type="checkbox" name="demon2" value="1" checked="checked"></label>
+				<label>value=2<input type="checkbox" name="demon2" value="2"></label>
+				<label>value=3<input type="checkbox" name="demon2" value="3"></label>
+			</div>
+		</div>
+		<div>
+			<h1>显示结果</h1>
+			<div data-matchable='m1[1]&m2[1]' data-matchable-type="disabled">
+				<label>当m1=1，m2=1的时候可以编辑，否则是disabled<input type="text" /></label>
+			</div>
+			<div data-matchable="m1[2]|m2[2]" data-matchable-type="active">
+				<label>当m1=2或者m2=2的时候显示，否则是隐藏的，并且是disabled的<input type="text" /></label>
+			</div>
+		</div>
+		<script src="jquery-1.7.2.min.js"></script>
+		<script src="jquery.matchable.js"></script>
+		<script type="text/javascript">
+			$.matchable.register('m1',$('[name="demon1"]'), 'radio');
+			$.matchable.register('m2',$('[name="demon2"]'), 'checkbox');
+			$.matchable.action();
+		</script>
+	</body>
+</html>

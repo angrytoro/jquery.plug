@@ -16,8 +16,8 @@
 			action: function(element) {
 				if (element && element.length) {
 					var name = element.data('matchable-name');
-					// var regExp = new RegExp('^(.+&)?\[\\w\\d\]+\\[');
-					var regExp = new RegExp('^(.+&)?' + name + '\\[');
+					// var regExp = new RegExp('^(.+&)?\[\\w\\d\]+\\[');/^(.+[|&])*m2\[/
+					var regExp = new RegExp('^(.+[|&])*' + name + '\\[');
 					$("[data-matchable]").each(function(i, v) {
 						var $el = $(this);
 						var cond = $.trim($el.data('matchable'));
@@ -121,18 +121,15 @@
 
 	checkboxMatcher.prototype.check = function(value) {
 
-		var result = false;
+		var result = [];
 		this.element.each(function() {
 
 			if (this.checked) {
-				result = result || this.value === value;
-				if (result) {
-					return false;
-				}
+				result.push(this.value);
 			}
 		});
 
-		return result;
+		return $.inArray(value, result) > -1;
 	};
 
 	function selectMatcher(element) {
